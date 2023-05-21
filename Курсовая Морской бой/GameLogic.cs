@@ -15,7 +15,6 @@ namespace Курсовая_Морской_бой
         public string alphabet = "АБВГДЕЖЗИК"; // буквы по краям
         public bool isHorizontal = true; // по умолчанию горизонтальная ориентация
 
-        public int whoWin = 0;
         public int[] a = new int[10];
         public int[,] myMap = new int[mapSize, mapSize]; // размерность карты
         public int[,] enemyMap = new int[mapSize, mapSize]; // размерность вражеской карты
@@ -131,20 +130,6 @@ namespace Курсовая_Морской_бой
                         this.Controls.Add(button); // добавление ячеек
                     }
                 }
-
-                ListBox l = new ListBox();
-                l.Location = new Point(mapSize * cellSize - 20, mapSize * cellSize + 40);
-                this.Controls.Add(l);
-
-                Label l1 = new Label();
-                l1.Text = "История игр";
-                l1.Location = new Point(mapSize * cellSize + 10, mapSize * cellSize + 10);
-                this.Controls.Add(l1);
-
-                if (whoWin == 1)
-                    l.Items.Add("Bot Win");
-                else if (whoWin == 2)
-                    l.Items.Add("Player Win");
 
                 Label map1 = new Label();
                 map1.Text = "Карта игрока";
@@ -423,7 +408,6 @@ namespace Курсовая_Морской_бой
         }
         public bool CheckIfMapIsNotEmpty() // проверка на то что пустая ли карта
         {
-            whoWin = 0;
             bool isEmpty1 = true;
             bool isEmpty2 = true;
             for (int i = 1; i < mapSize; i++)
@@ -439,14 +423,12 @@ namespace Курсовая_Морской_бой
             if (isEmpty1)
             {
                 MessageBox.Show("Bot Win");
-                whoWin = 1;
                 return false;
 
             }
             else if (isEmpty2)
             {
                 MessageBox.Show("Player Win");
-                whoWin = 2;
                 return false;
 
             }
